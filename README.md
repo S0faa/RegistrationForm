@@ -1,85 +1,153 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# QR_Api
+Этот API предоставляет функционал регистрации и авторизации для пользователей.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+- Регистрация пользователя.
+- Авторизация пользователя.
+- Хранение данных зарегистрированного пользователя.
+### Request (запрос)
+##### Конечная точка
+**POST** https://grown-cod-happily.ngrok-free.app/users/registration
+##### Описание
+Эндпоинт для регистрации пользователя.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Параметры запроса
+- **email** (string): Почта.
+- **password** (string): Пароль.
+- **id** (number): Уникальный индентификатор пользователя.
+- **username** (string): Имя пользователя.
+- **phone** (string): Номер телефона.
+- **admin** (string): Флаг для определения уровня доступа пользователя.
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ npm install
+### Пример запроса
+```json
+{
+    "email": "testing@mail.ru",
+    "password": "P@ssw0rd",
+    "id": "1",
+    "username": "Sofia",
+    "phone": "+79185466039",
+    "admin": "false"
+}
 ```
 
-## Compile and run the project
+### Response (ответ)
+### Параметры ответа
+- **email** (string): Почта.
+- **password** (string): Захешированный пароль.
+- **id** (number): Уникальный индентификатор пользователя.
+- **username** (string): Имя пользователя.
+- **phone** (string): Номер телефона.
+- **admin** (string): Флаг для определения уровня доступа пользователя.
 
-```bash
-# development
-$ npm run start
+### Пример ответа
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```json
+{
+   "email": "testing@mail.ru",
+   "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "id": "1",
+   "username": "Sofia",
+   "phone": "+79185466039",
+   "admin": "false"
+}
 ```
 
-## Run tests
+### Request (запрос)
+##### Конечная точка
+**GET** https://grown-cod-happily.ngrok-free.app/get-all
+##### Описание
+Эндпоинт для получения всех пользователей.
 
-```bash
-# unit tests
-$ npm run test
+### Параметры запроса
+**Пустое тело запроса**
 
-# e2e tests
-$ npm run test:e2e
+### Response (ответ)
+### Параметры ответа
+- **id** (number): Уникальный индентификатор пользователя.
+- **username** (string): Имя пользователя.
+- **password** (string): Захешированный пароль.
+- **phone** (string): Номер телефона.
+- **email** (string): Почта.
+- **admin** (string): Флаг для определения уровня доступа пользователя.
 
-# test coverage
-$ npm run test:cov
+### Пример ответа
+```json
+[
+  {
+    "id": 1,
+    "username": "Sofia",
+    "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "phone": "+79185466039",
+    "email": "testing@mail.ru",
+    "admin": false
+  }
+  ...
+]
 ```
 
-## Resources
+### Request (запрос)
+##### Конечная точка
+**GET** https://grown-cod-happily.ngrok-free.app/get-user/:id
+##### Описание
+##### RequestParam: 
+**id** (number): Уникальный индентификатор пользователя. (например, `1`)
 
-Check out a few resources that may come in handy when working with NestJS:
+### Response (ответ)
+### Параметры ответа
+- **id** (number): Уникальный индентификатор пользователя.
+- **username** (string): Имя пользователя.
+- **password** (string): Захешированный пароль.
+- **phone** (string): Номер телефона.
+- **email** (string): Почта.
+- **admin** (string): Флаг для определения уровня доступа пользователя.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Пример ответа
+```json
+{
+    "id": 1,
+    "username": "Sofia",
+    "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "phone": "+79185466039",
+    "email": "testing@mail.ru",
+    "admin": false
+}
+```
 
-## Support
+### Request (запрос)
+##### Конечная точка
+**POST** https://grown-cod-happily.ngrok-free.app/login
+##### Описание
+Эндпоинт для авторизации пользователя в системе.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Параметры запроса
+- **email** (string): Почта.
+- **password** (string): Пароль.
 
-## Stay in touch
+### Пример запроса
+```json
+{
+    "email": "testing@mail.ru",
+    "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Response (ответ)
+### Параметры ответа
+- **email** (string): Почта.
+- **password** (string): Захешированный пароль.
+- **id** (number): Уникальный индентификатор пользователя.
+- **username** (string): Имя пользователя.
+- **phone** (string): Номер телефона.
+- **admin** (string): Флаг для определения уровня доступа пользователя.
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Пример ответа
+```json
+{
+  "id": 1,
+  "username": "Sofia",
+  "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "phone": "+79185466039",
+  "email": "testing@mail.ru",
+  "admin": false
+}
+```

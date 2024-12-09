@@ -20,7 +20,7 @@ export class UsersController {
             return data
         }
         catch(error){
-           
+
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
                 warningMessage: error.message,
@@ -28,10 +28,10 @@ export class UsersController {
                 cause: error
               });
         }
-     
+
     }
 
-   
+
     @ApiOperation({summary: "Получить всех пользователей"})
     @ApiResponse({status:200, type: [User]})
     @Get('/get-all')
@@ -55,16 +55,13 @@ export class UsersController {
                 cause: error
               });
         }
-        
+
     }
 
     @ApiOperation({summary: "Вход для пользователя, авторизация"})
     @ApiResponse({status:200, type: User})
     @Post('/login')
     async Login(@Body() userDto: UserDto){
-    
-        
-
         try{
             const data = await this.usersService.login(userDto)
             return data
@@ -78,7 +75,4 @@ export class UsersController {
               });
         }
     }
-
-    
-    
 }
